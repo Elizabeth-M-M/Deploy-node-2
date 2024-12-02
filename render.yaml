@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: blog-backend
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: blog-db
+          property: connectionString
+      - key: NODE_ENV
+        value: production
+
+databases:
+  - name: blog-db
+    plan: free
+    region: oregon
